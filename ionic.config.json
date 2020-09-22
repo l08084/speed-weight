@@ -1,0 +1,7 @@
+{
+  "name": "speedWeight",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
