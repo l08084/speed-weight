@@ -10,19 +10,7 @@
     top: 25%;
 }
 
-.ion-color-twitter {
-    --ion-color-base: var(--ion-color-twitter);
-    --ion-color-base-rgb: var(--ion-color-twitter-rgb);
-    --ion-color-contrast: var(--ion-color-twitter-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-twitter-contrast-rgb);
-    --ion-color-shade: var(--ion-color-twitter-shade);
-    --ion-color-tint: var(--ion-color-twitter-tint);
-}
-
-.twitter {
-    color: #FFF;
-    background-color: #00acee;
-    border-color: #00acee;
+.login-button {
     font-weight: bold;
     width: 100%;
 }

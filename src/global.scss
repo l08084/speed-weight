@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.ion-color-twitter {
+    --ion-color-base: var(--ion-color-twitter);
+    --ion-color-base-rgb: var(--ion-color-twitter-rgb);
+    --ion-color-contrast: var(--ion-color-twitter-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-twitter-contrast-rgb);
+    --ion-color-shade: var(--ion-color-twitter-shade);
+    --ion-color-tint: var(--ion-color-twitter-tint);
+}
