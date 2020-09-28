@@ -82,6 +82,14 @@
   --ion-color-twitter-contrast-rgb: 255, 255, 255;
   --ion-color-twitter-shade: #0097d1;
   --ion-color-twitter-tint: #1ab4f0;
+
+  /** facebook **/
+  --ion-color-facebook: #3b5998;
+  --ion-color-facebook-rgb: 59, 89, 152;
+  --ion-color-facebook-contrast: #ffffff;
+  --ion-color-facebook-contrast-rgb: 255, 255, 255;
+  --ion-color-facebook-shade: #344e86;
+  --ion-color-facebook-tint: #4f6aa2;
 }
 
 @media (prefers-color-scheme: dark) {
