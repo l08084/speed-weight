@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   private async getRedirectResult() {
     const result: firebase.auth.UserCredential = await this.authenticationService.getRedirectResult();
     try {
-      if (result.credential) {
+      if (result.user != null) {
         this.router.navigate(['/weight/tabs/tab1']);
       }
     } catch (error) {
