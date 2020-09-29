@@ -25,4 +25,8 @@ export class AuthenticationService {
       new firebase.auth.TwitterAuthProvider()
     );
   }
+
+  public getRedirectResult(): Promise<firebase.auth.UserCredential> {
+    return this.afAuth.getRedirectResult();
+  }
 }

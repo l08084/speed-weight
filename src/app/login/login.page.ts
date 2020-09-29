@@ -13,12 +13,20 @@ export class LoginPage implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getRedirectResult();
+  }
 
   public async signInWithTwitter() {
+    await this.authenticationService.signInWithTwitter();
+  }
+
+  private async getRedirectResult() {
+    const result: firebase.auth.UserCredential = await this.authenticationService.getRedirectResult();
     try {
-      await this.authenticationService.signInWithTwitter();
-      this.router.navigate(['/weight/tabs/tab1']);
+      if (result.credential) {
+        this.router.navigate(['/weight/tabs/tab1']);
+      }
     } catch (error) {
       console.log(error);
     }
