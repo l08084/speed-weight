@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
+/**
+ * ログイン画面のコンポーネントクラス
+ *
+ * @export
+ * @class LoginPage
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -17,10 +24,21 @@ export class LoginPage implements OnInit {
     this.getRedirectResult();
   }
 
+  /**
+   * Twitterで認証する。
+   *
+   * @memberof LoginPage
+   */
   public async signInWithTwitter() {
     await this.authenticationService.signInWithTwitter();
   }
 
+  /**
+   * リダイレクト後に呼び出される処理。
+   *
+   * @private
+   * @memberof LoginPage
+   */
   private async getRedirectResult() {
     const result: firebase.auth.UserCredential = await this.authenticationService.getRedirectResult();
     try {

@@ -15,7 +15,8 @@ export class AuthenticationService {
   constructor(public afAuth: AngularFireAuth) {}
 
   /**
-   * Twitter認証を呼び出す
+   * Twitter認証を呼び出す。
+   * 認証成功時にリダイレクトする。
    *
    * @returns {Promise<void>}
    * @memberof AuthenticationService
@@ -26,6 +27,12 @@ export class AuthenticationService {
     );
   }
 
+  /**
+   * リダイレクト後の処理。
+   *
+   * @returns {Promise<firebase.auth.UserCredential>}
+   * @memberof AuthenticationService
+   */
   public getRedirectResult(): Promise<firebase.auth.UserCredential> {
     return this.afAuth.getRedirectResult();
   }
