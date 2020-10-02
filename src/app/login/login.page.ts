@@ -34,6 +34,15 @@ export class LoginPage implements OnInit {
   }
 
   /**
+   * Facebookで認証する。
+   *
+   * @memberof LoginPage
+   */
+  public async signInWithFacebook() {
+    await this.authenticationService.signInWithFacebook();
+  }
+
+  /**
    * リダイレクト後に呼び出される処理。
    *
    * @private
