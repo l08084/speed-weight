@@ -13,4 +13,9 @@
 .login-button {
     font-weight: bold;
     width: 100%;
+
+    &.google {
+        --border-style: solid;
+        --border-width: 1px;
+    }
 }

@@ -90,6 +90,14 @@
   --ion-color-facebook-contrast-rgb: 255, 255, 255;
   --ion-color-facebook-shade: #344e86;
   --ion-color-facebook-tint: #4f6aa2;
+
+  /** google **/
+  --ion-color-google: #FFFFFF;
+  --ion-color-google-rgb: 255, 255, 255;
+  --ion-color-google-contrast: #000000;
+  --ion-color-google-contrast-rgb: 0, 0, 0;
+  --ion-color-google-shade: #e0e0e0;
+  --ion-color-google-tint: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
