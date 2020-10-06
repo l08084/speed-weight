@@ -43,6 +43,15 @@ export class LoginPage implements OnInit {
   }
 
   /**
+   * Googleで認証する。
+   *
+   * @memberof LoginPage
+   */
+  public async signInWithGoogle() {
+    await this.authenticationService.signInWithGoogle();
+  }
+
+  /**
    * リダイレクト後に呼び出される処理。
    *
    * @private

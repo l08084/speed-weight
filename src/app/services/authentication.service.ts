@@ -41,6 +41,19 @@ export class AuthenticationService {
   }
 
   /**
+   * Google認証を呼び出す。
+   * 認証成功時にリダイレクトする。
+   *
+   * @returns {Promise<void>}
+   * @memberof AuthenticationService
+   */
+  public signInWithGoogle(): Promise<void> {
+    return this.afAuth.signInWithRedirect(
+      new firebase.auth.GoogleAuthProvider()
+    );
+  }
+
+  /**
    * リダイレクト後の処理。
    *
    * @returns {Promise<firebase.auth.UserCredential>}
