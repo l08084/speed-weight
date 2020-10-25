@@ -52,6 +52,15 @@ export class LoginPage implements OnInit {
   }
 
   /**
+   * GitHubで認証する。
+   *
+   * @memberof LoginPage
+   */
+  public async signInWithGitHub() {
+    await this.authenticationService.signInWithGitHub();
+  }
+
+  /**
    * リダイレクト後に呼び出される処理。
    *
    * @private

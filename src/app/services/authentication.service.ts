@@ -54,6 +54,19 @@ export class AuthenticationService {
   }
 
   /**
+   * GitHub認証を呼び出す。
+   * 認証成功時にリダイレクトする。
+   *
+   * @returns {Promise<void>}
+   * @memberof AuthenticationService
+   */
+  public signInWithGitHub(): Promise<void> {
+    return this.afAuth.signInWithRedirect(
+      new firebase.auth.GithubAuthProvider()
+    );
+  }
+
+  /**
    * リダイレクト後の処理。
    *
    * @returns {Promise<firebase.auth.UserCredential>}
