@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 /**
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class Tab3Page {
 
-  constructor(private router: Router) {}
+  constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
   /**
    * 利用規約画面に遷移する
@@ -32,6 +33,15 @@ export class Tab3Page {
    */
   public goToPrivacyPolicy(): void {
     this.router.navigateByUrl('/privacy-policy');
+  }
+
+  public async signOut(): Promise<void> {
+    try {
+      await this.afAuth.signOut();
+      this.router.navigate(['']);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
 }
