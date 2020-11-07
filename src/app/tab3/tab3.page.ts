@@ -35,6 +35,12 @@ export class Tab3Page {
     this.router.navigateByUrl('/privacy-policy');
   }
 
+  /**
+   * サインアウト
+   *
+   * @returns {Promise<void>}
+   * @memberof Tab3Page
+   */
   public async signOut(): Promise<void> {
     try {
       await this.afAuth.signOut();
