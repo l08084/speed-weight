@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { SpinnerService } from '../services/spinner.service';
 
 /**
  * ログイン画面のコンポーネントクラス
@@ -17,7 +18,8 @@ import { AuthenticationService } from '../services/authentication.service';
 export class LoginPage implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit() {
@@ -67,6 +69,7 @@ export class LoginPage implements OnInit {
    * @memberof LoginPage
    */
   private async getRedirectResult() {
+    this.spinnerService.show();
     const result: firebase.auth.UserCredential = await this.authenticationService.getRedirectResult();
     try {
       if (result.user != null) {
@@ -74,6 +77,8 @@ export class LoginPage implements OnInit {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      this.spinnerService.hide();
     }
   }
 }
