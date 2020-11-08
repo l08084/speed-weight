@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { SpinnerService } from '../services/spinner.service';
 
 /**
  * 設定タブ画面
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class Tab3Page {
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private afAuth: AngularFireAuth, private router: Router, private spinnerService: SpinnerService) {}
 
   /**
    * 利用規約画面に遷移する
@@ -42,11 +43,15 @@ export class Tab3Page {
    * @memberof Tab3Page
    */
   public async signOut(): Promise<void> {
+    this.spinnerService.show();
+
     try {
       await this.afAuth.signOut();
       this.router.navigate(['']);
     } catch (err) {
       console.error(err);
+    } finally {
+      this.spinnerService.hide();
     }
   }
 
