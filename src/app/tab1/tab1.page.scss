@@ -1,8 +1,9 @@
 .button-area {
-    height: 100%;
     padding: 20px;
 
     .register {
+        align-items: flex-end;
+        display: flex;
         width: 100%;
     }
 }
