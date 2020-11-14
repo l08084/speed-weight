@@ -12,15 +12,17 @@
       <ion-title size="large">入力</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-item>
-    <ion-datetime displayFormat="YYYY/MM/DD" min="2020-11-12" max="2040-12-31"></ion-datetime>
-  </ion-item>
-  <ion-item>
-    <ion-label>体重</ion-label>
-    <ion-input type="number" placeholder="未入力" autofocus="true"></ion-input>
-    <ion-label>kg</ion-label>
-  </ion-item>
-  <div class="button-area">
-    <ion-button class="register">登録する</ion-button>
-  </div>
+  <form [formGroup]="bodyWeightFormGroup">
+    <ion-item>
+      <ion-datetime formControlName="date" displayFormat="YYYY/MM/DD" min="2020-11-12" max="2040-12-31"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>体重</ion-label>
+      <ion-input formControlName="bodyWeight" type="number" placeholder="未入力" autofocus="true"></ion-input>
+      <ion-label>kg</ion-label>
+    </ion-item>
+    <div class="button-area">
+      <ion-button type="submit" class="register">登録する</ion-button>
+    </div>
+  </form>
 </ion-content>
