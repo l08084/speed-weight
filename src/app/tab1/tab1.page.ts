@@ -19,8 +19,19 @@ export class Tab1Page {
   }
 
   /**
+   * 体重を設定する
+   *
+   * @memberof Tab1Page
+   */
+  public registerBodyWeight(): void {
+    console.log('register');
+  }
+
+  /**
    * フォーム設定の作成
    *
+   * @private
+   * @memberof Tab1Page
    */
   private createForm() {
     this.bodyWeightFormGroup = this.fb.group(

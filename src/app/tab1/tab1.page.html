@@ -12,7 +12,7 @@
       <ion-title size="large">入力</ion-title>
     </ion-toolbar>
   </ion-header>
-  <form [formGroup]="bodyWeightFormGroup">
+  <form [formGroup]="bodyWeightFormGroup" (ngSubmit)="registerBodyWeight()">
     <ion-item>
       <ion-datetime formControlName="date" displayFormat="YYYY/MM/DD" min="2020-11-12" max="2040-12-31"></ion-datetime>
     </ion-item>
