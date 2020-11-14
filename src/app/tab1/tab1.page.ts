@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tab1',
@@ -36,8 +36,8 @@ export class Tab1Page {
   private createForm() {
     this.bodyWeightFormGroup = this.fb.group(
       {
-        date: ['', []],
-        bodyWeight: ['', []]
+        date: ['', [Validators.required]],
+        bodyWeight: ['', [Validators.required]]
       }
     );
   }

@@ -22,7 +22,7 @@
       <ion-label>kg</ion-label>
     </ion-item>
     <div class="button-area">
-      <ion-button type="submit" class="register">登録する</ion-button>
+      <ion-button [disabled]="!bodyWeightFormGroup.valid" type="submit" class="register">登録する</ion-button>
     </div>
   </form>
 </ion-content>
