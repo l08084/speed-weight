@@ -37,7 +37,7 @@ export class Tab1Page {
     this.bodyWeightFormGroup = this.fb.group(
       {
         date: ['', [Validators.required]],
-        bodyWeight: ['', [Validators.required]]
+        bodyWeight: ['', [Validators.required, Validators.min(0), Validators.max(999)]]
       }
     );
   }
