@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
   // FormGroup定義
@@ -34,11 +39,12 @@ export class Tab1Page {
    * @memberof Tab1Page
    */
   private createForm() {
-    this.bodyWeightFormGroup = this.fb.group(
-      {
-        date: ['', [Validators.required]],
-        bodyWeight: ['', [Validators.required, Validators.min(0), Validators.max(999)]]
-      }
-    );
+    this.bodyWeightFormGroup = this.fb.group({
+      date: ['', [Validators.required]],
+      bodyWeight: [
+        '',
+        [Validators.required, Validators.min(0), Validators.max(999)],
+      ],
+    });
   }
 }

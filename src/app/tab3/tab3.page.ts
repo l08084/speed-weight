@@ -12,13 +12,14 @@ import { SpinnerService } from '../services/spinner.service';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page {
-
-  constructor(private afAuth: AngularFireAuth,
-              private router: Router,
-              private spinnerService: SpinnerService) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private spinnerService: SpinnerService
+  ) {}
 
   /**
    * 利用規約画面に遷移する
@@ -56,5 +57,4 @@ export class Tab3Page {
       this.spinnerService.hide();
     }
   }
-
 }

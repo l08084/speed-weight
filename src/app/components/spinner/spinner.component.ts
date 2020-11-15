@@ -13,5 +13,4 @@ export class SpinnerComponent implements OnInit {
   constructor(private spinnerService: SpinnerService) {}
 
   ngOnInit() {}
-
 }

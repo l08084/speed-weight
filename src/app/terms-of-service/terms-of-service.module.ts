@@ -13,8 +13,8 @@ import { TermsOfServicePage } from './terms-of-service.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TermsOfServicePageRoutingModule
+    TermsOfServicePageRoutingModule,
   ],
-  declarations: [TermsOfServicePage]
+  declarations: [TermsOfServicePage],
 })
 export class TermsOfServicePageModule {}

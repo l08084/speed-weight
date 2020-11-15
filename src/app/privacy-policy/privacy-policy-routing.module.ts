@@ -6,8 +6,8 @@ import { PrivacyPolicyPage } from './privacy-policy.page';
 const routes: Routes = [
   {
     path: '',
-    component: PrivacyPolicyPage
-  }
+    component: PrivacyPolicyPage,
+  },
 ];
 
 @NgModule({

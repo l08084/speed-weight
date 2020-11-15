@@ -6,8 +6,8 @@ import { TermsOfServicePage } from './terms-of-service.page';
 const routes: Routes = [
   {
     path: '',
-    component: TermsOfServicePage
-  }
+    component: TermsOfServicePage,
+  },
 ];
 
 @NgModule({
