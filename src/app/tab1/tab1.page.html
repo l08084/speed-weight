@@ -14,11 +14,11 @@
   </ion-header>
   <form [formGroup]="bodyWeightFormGroup" (ngSubmit)="registerBodyWeight()">
     <ion-item>
-      <ion-datetime formControlName="date" displayFormat="YYYY/MM/DD" min="2020-11-12" max="2040-12-31"></ion-datetime>
+      <ion-datetime class="weight-date" formControlName="date" displayFormat="YYYY/MM/DD" min="2020-11-12" max="2040-12-31"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>体重</ion-label>
-      <ion-input formControlName="bodyWeight" type="number" placeholder="未入力" autofocus="true"></ion-input>
+      <ion-input class="body-weight" formControlName="bodyWeight" type="number" placeholder="未入力" autofocus="true"></ion-input>
       <ion-label>kg</ion-label>
     </ion-item>
     <div class="button-area">
