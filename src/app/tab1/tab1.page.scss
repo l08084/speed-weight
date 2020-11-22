@@ -14,8 +14,11 @@
     padding: 20px;
 
     .register {
-        align-items: flex-end;
-        display: flex;
-        width: 100%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        position: absolute;
+        bottom: 80px;
+        width: 80%;
     }
 }
