@@ -21,6 +21,7 @@ export class Tab1Page {
 
   constructor(private fb: FormBuilder) {
     this.createForm();
+    this.initDate();
   }
 
   /**
@@ -30,6 +31,17 @@ export class Tab1Page {
    */
   public registerBodyWeight(): void {
     console.log('register');
+  }
+
+  /**
+   * 画面の初期表示時に
+   * datepickerに当日の日付を設定する
+   *
+   * @private
+   * @memberof Tab1Page
+   */
+  private initDate(): void {
+    console.log('initDate');
   }
 
   /**
