@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-tab1',
@@ -41,7 +42,7 @@ export class Tab1Page {
    * @memberof Tab1Page
    */
   private initDate(): void {
-    console.log('initDate');
+    this.dateControl.setValue(dayjs().format());
   }
 
   /**
