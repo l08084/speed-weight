@@ -58,5 +58,7 @@ export class Tab1Page {
         [Validators.required, Validators.min(0), Validators.max(999)],
       ],
     });
+
+    this.dateControl = this.bodyWeightFormGroup.get('date') as FormControl;
   }
 }
