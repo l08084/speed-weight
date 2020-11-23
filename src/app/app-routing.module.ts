@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthenticatedGuard } from './authenticated.guard';
 import { AuthenticationGuard } from './authentication.guard';
 
 const routes: Routes = [
@@ -7,6 +8,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule),
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: 'weight',
