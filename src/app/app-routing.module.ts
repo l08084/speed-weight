@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './authentication.guard';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     path: 'weight',
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'terms-of-service',
