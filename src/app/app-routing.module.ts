@@ -8,13 +8,13 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule),
-    canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard],
   },
   {
     path: 'weight',
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthenticationGuard],
   },
   {
     path: 'terms-of-service',

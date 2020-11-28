@@ -75,4 +75,14 @@ export class AuthenticationService {
   public getRedirectResult(): Promise<firebase.auth.UserCredential> {
     return this.afAuth.getRedirectResult();
   }
+
+  /**
+   * ログインしているアカウントの情報を返す
+   *
+   * @returns {Promise<firebase.User>}
+   * @memberof AuthenticationService
+   */
+  public getCurrentUser(): Promise<firebase.User> {
+    return this.afAuth.currentUser;
+  }
 }

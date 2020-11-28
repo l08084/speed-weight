@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import {
   FormBuilder,
   FormControl,
@@ -6,6 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import * as dayjs from 'dayjs';
+import { firestore } from 'firebase';
+import { Health } from '../models/health';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-tab1',
@@ -20,7 +24,11 @@ export class Tab1Page {
   // 体重フォームのコントロール定義
   public bodyWeightControl: FormControl;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private afStore: AngularFirestore,
+    private authenticationService: AuthenticationService
+  ) {
     this.createForm();
     this.initDate();
   }
@@ -30,8 +38,20 @@ export class Tab1Page {
    *
    * @memberof Tab1Page
    */
-  public registerBodyWeight(): void {
-    console.log('register');
+  public async registerBodyWeight(): Promise<void> {
+    // ログインしているユーザ情報の取得
+    const user = await this.authenticationService.getCurrentUser();
+
+    const health: Health = {
+      id: '',
+      date: dayjs(this.dateControl.value).format('YYYY-MM-DD'),
+      weight: this.bodyWeightControl.value as number,
+      createdUser: user.uid,
+      createdDate: firestore.FieldValue.serverTimestamp(),
+      updatedDate: firestore.FieldValue.serverTimestamp(),
+    };
+
+    console.log(health);
   }
 
   /**
@@ -61,5 +81,8 @@ export class Tab1Page {
     });
 
     this.dateControl = this.bodyWeightFormGroup.get('date') as FormControl;
+    this.bodyWeightControl = this.bodyWeightFormGroup.get(
+      'bodyWeight'
+    ) as FormControl;
   }
 }
