@@ -53,6 +53,8 @@ export class Tab1Page {
     );
     if (!found) {
       this.registerBodyWeight();
+    } else {
+      this.updateBodyWeight(found);
     }
   }
 
@@ -61,7 +63,7 @@ export class Tab1Page {
    *
    * @memberof Tab1Page
    */
-  public async registerBodyWeight(): Promise<void> {
+  private async registerBodyWeight(): Promise<void> {
     this.spinnerService.show();
 
     try {
@@ -78,8 +80,31 @@ export class Tab1Page {
       };
       const docRef = await this.afStore.collection('health').add(health);
 
-      this.myHealthCollection.doc(docRef.id).update({
+      await this.myHealthCollection.doc(docRef.id).update({
         id: docRef.id,
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      this.spinnerService.hide();
+    }
+  }
+
+  /**
+   * 体重の更新
+   *
+   * @private
+   * @param {Health} beforeHealth
+   * @returns {Promise<void>}
+   * @memberof Tab1Page
+   */
+  private async updateBodyWeight(beforeHealth: Health): Promise<void> {
+    this.spinnerService.show();
+
+    try {
+      await this.myHealthCollection.doc(beforeHealth.id).update({
+        weight: this.bodyWeightControl.value as number,
+        updatedDate: firestore.FieldValue.serverTimestamp()
       });
     } catch (err) {
       console.error(err);
