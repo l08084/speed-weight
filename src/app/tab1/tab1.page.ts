@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
 import {
   FormBuilder,
   FormControl,
@@ -10,6 +13,7 @@ import * as dayjs from 'dayjs';
 import { firestore } from 'firebase';
 import { Health } from '../models/health';
 import { AuthenticationService } from '../services/authentication.service';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
   selector: 'app-tab1',
@@ -23,14 +27,17 @@ export class Tab1Page {
   public dateControl: FormControl;
   // 体重フォームのコントロール定義
   public bodyWeightControl: FormControl;
+  private healthCollection: AngularFirestoreCollection<Health>;
 
   constructor(
     private fb: FormBuilder,
     private afStore: AngularFirestore,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private spinnerService: SpinnerService
   ) {
     this.createForm();
     this.initDate();
+    this.getHealths();
   }
 
   /**
@@ -39,19 +46,30 @@ export class Tab1Page {
    * @memberof Tab1Page
    */
   public async registerBodyWeight(): Promise<void> {
-    // ログインしているユーザ情報の取得
-    const user = await this.authenticationService.getCurrentUser();
+    this.spinnerService.show();
 
-    const health: Health = {
-      id: '',
-      date: dayjs(this.dateControl.value).format('YYYY-MM-DD'),
-      weight: this.bodyWeightControl.value as number,
-      createdUser: user.uid,
-      createdDate: firestore.FieldValue.serverTimestamp(),
-      updatedDate: firestore.FieldValue.serverTimestamp(),
-    };
+    try {
+      // ログインしているユーザ情報の取得
+      const user = await this.authenticationService.getCurrentUser();
 
-    console.log(health);
+      const health: Health = {
+        id: '',
+        date: dayjs(this.dateControl.value).format('YYYY-MM-DD'),
+        weight: this.bodyWeightControl.value as number,
+        createdUser: user.uid,
+        createdDate: firestore.FieldValue.serverTimestamp(),
+        updatedDate: firestore.FieldValue.serverTimestamp(),
+      };
+      const docRef = await this.afStore.collection('health').add(health);
+
+      this.healthCollection.doc(docRef.id).update({
+        id: docRef.id,
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      this.spinnerService.hide();
+    }
   }
 
   /**
@@ -63,6 +81,18 @@ export class Tab1Page {
    */
   private initDate(): void {
     this.dateControl.setValue(dayjs().format());
+  }
+
+  /**
+   * FirestoreからHealthデータを取得する
+   *
+   * @private
+   * @memberof Tab1Page
+   */
+  private getHealths(): void {
+    this.healthCollection = this.afStore.collection('health', (ref) =>
+      ref.orderBy('createdDate', 'desc')
+    );
   }
 
   /**
