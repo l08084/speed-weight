@@ -28,7 +28,7 @@ export class Tab1Page {
   // 体重フォームのコントロール定義
   public bodyWeightControl: FormControl;
   private myHealthCollection: AngularFirestoreCollection<Health>;
-  private healths: Health[];
+  private myHealths: Health[];
 
   constructor(
     private fb: FormBuilder,
@@ -106,9 +106,9 @@ export class Tab1Page {
       ref.orderBy('createdDate', 'desc').where('createdUser', '==', user.uid)
     );
 
-    this.myHealthCollection.valueChanges().subscribe(healths => {
+    this.myHealthCollection.valueChanges().subscribe(myHealths => {
       this.spinnerService.show();
-      this.healths = healths;
+      this.myHealths = myHealths;
       this.spinnerService.hide();
     });
   }
