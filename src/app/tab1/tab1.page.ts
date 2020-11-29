@@ -47,7 +47,13 @@ export class Tab1Page {
    * @memberof Tab1Page
    */
   public upsertBodyWeight(): void {
-    this.registerBodyWeight();
+    // 同一日付のHealthデータがあるか検索する
+    const found = this.myHealths.find(
+      (item) => item.date === dayjs(this.dateControl.value).format('YYYY-MM-DD')
+    );
+    if (!found) {
+      this.registerBodyWeight();
+    }
   }
 
   /**
@@ -106,7 +112,7 @@ export class Tab1Page {
       ref.orderBy('createdDate', 'desc').where('createdUser', '==', user.uid)
     );
 
-    this.myHealthCollection.valueChanges().subscribe(myHealths => {
+    this.myHealthCollection.valueChanges().subscribe((myHealths) => {
       this.spinnerService.show();
       this.myHealths = myHealths;
       this.spinnerService.hide();
