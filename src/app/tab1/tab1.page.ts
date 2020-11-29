@@ -27,7 +27,8 @@ export class Tab1Page {
   public dateControl: FormControl;
   // 体重フォームのコントロール定義
   public bodyWeightControl: FormControl;
-  private healthCollection: AngularFirestoreCollection<Health>;
+  private myHealthCollection: AngularFirestoreCollection<Health>;
+  private healths: Health[];
 
   constructor(
     private fb: FormBuilder,
@@ -71,7 +72,7 @@ export class Tab1Page {
       };
       const docRef = await this.afStore.collection('health').add(health);
 
-      this.healthCollection.doc(docRef.id).update({
+      this.myHealthCollection.doc(docRef.id).update({
         id: docRef.id,
       });
     } catch (err) {
@@ -98,11 +99,18 @@ export class Tab1Page {
    * @private
    * @memberof Tab1Page
    */
-  private getHealths(): void {
-    // id採番のために全ユーザーのHealthデータを取得する
-    this.healthCollection = this.afStore.collection('health', (ref) =>
-      ref.orderBy('createdDate', 'desc')
+  private async getHealths(): Promise<void> {
+    const user = await this.authenticationService.getCurrentUser();
+    // ログインユーザーの全Healthデータを取得する
+    this.myHealthCollection = this.afStore.collection('health', (ref) =>
+      ref.orderBy('createdDate', 'desc').where('createdUser', '==', user.uid)
     );
+
+    this.myHealthCollection.valueChanges().subscribe(healths => {
+      this.spinnerService.show();
+      this.healths = healths;
+      this.spinnerService.hide();
+    });
   }
 
   /**
