@@ -41,7 +41,16 @@ export class Tab1Page {
   }
 
   /**
-   * 体重を設定する
+   * 体重の新規登録または更新をする
+   *
+   * @memberof Tab1Page
+   */
+  public upsertBodyWeight(): void {
+    this.registerBodyWeight();
+  }
+
+  /**
+   * 体重を新規登録する
    *
    * @memberof Tab1Page
    */
@@ -90,6 +99,7 @@ export class Tab1Page {
    * @memberof Tab1Page
    */
   private getHealths(): void {
+    // id採番のために全ユーザーのHealthデータを取得する
     this.healthCollection = this.afStore.collection('health', (ref) =>
       ref.orderBy('createdDate', 'desc')
     );
