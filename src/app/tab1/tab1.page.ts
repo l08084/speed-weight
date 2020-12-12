@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import {
   AngularFirestore,
@@ -20,7 +21,7 @@ import { SpinnerService } from '../services/spinner.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   // FormGroup定義
   public bodyWeightFormGroup: FormGroup;
   // 日付フォームのコントロール定義
@@ -35,10 +36,16 @@ export class Tab1Page {
     private afStore: AngularFirestore,
     private authenticationService: AuthenticationService,
     private spinnerService: SpinnerService
-  ) {
+  ) {}
+
+  public ngOnInit() {
     this.createForm();
     this.initDate();
     this.getHealths();
+
+    this.dateControl.valueChanges.subscribe(() => {
+      this.initBodyWeight();
+    });
   }
 
   /**
@@ -164,15 +171,30 @@ export class Tab1Page {
     ) as FormControl;
   }
 
+  /**
+   * 体重項目にその日の体重をセットする
+   *
+   * @private
+   * @memberof Tab1Page
+   */
   private initBodyWeight() {
     // 同一日付のHealthデータがあるか検索する
     const found = this.getSameDayBodyWeight();
     if (found) {
-      console.log(`found: ${found.weight}`);
       this.bodyWeightControl.setValue(found.weight);
+    } else {
+      this.bodyWeightControl.setValue(undefined);
     }
   }
 
+  /**
+   * ピッカーと同一日付の体重を取得して、
+   * 項目にセットする
+   *
+   * @private
+   * @returns {Health}
+   * @memberof Tab1Page
+   */
   private getSameDayBodyWeight(): Health {
     return this.myHealths.find(
       (item) => item.date === dayjs(this.dateControl.value).format('YYYY-MM-DD')
