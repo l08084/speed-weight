@@ -28,7 +28,7 @@ export class Tab1Page {
   // 体重フォームのコントロール定義
   public bodyWeightControl: FormControl;
   private myHealthCollection: AngularFirestoreCollection<Health>;
-  private myHealths: Health[];
+  private myHealths: Health[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -48,9 +48,7 @@ export class Tab1Page {
    */
   public upsertBodyWeight(): void {
     // 同一日付のHealthデータがあるか検索する
-    const found = this.myHealths.find(
-      (item) => item.date === dayjs(this.dateControl.value).format('YYYY-MM-DD')
-    );
+    const found = this.getSameDayBodyWeight();
     if (!found) {
       this.registerBodyWeight();
     } else {
@@ -140,6 +138,7 @@ export class Tab1Page {
     this.myHealthCollection.valueChanges().subscribe((myHealths) => {
       this.spinnerService.show();
       this.myHealths = myHealths;
+      this.initBodyWeight();
       this.spinnerService.hide();
     });
   }
@@ -163,5 +162,20 @@ export class Tab1Page {
     this.bodyWeightControl = this.bodyWeightFormGroup.get(
       'bodyWeight'
     ) as FormControl;
+  }
+
+  private initBodyWeight() {
+    // 同一日付のHealthデータがあるか検索する
+    const found = this.getSameDayBodyWeight();
+    if (found) {
+      console.log(`found: ${found.weight}`);
+      this.bodyWeightControl.setValue(found.weight);
+    }
+  }
+
+  private getSameDayBodyWeight(): Health {
+    return this.myHealths.find(
+      (item) => item.date === dayjs(this.dateControl.value).format('YYYY-MM-DD')
+    );
   }
 }
