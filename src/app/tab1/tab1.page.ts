@@ -16,6 +16,13 @@ import { Health } from '../models/health';
 import { AuthenticationService } from '../services/authentication.service';
 import { SpinnerService } from '../services/spinner.service';
 
+/**
+ * 体重入力画面
+ *
+ * @export
+ * @class Tab1Page
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -43,6 +50,7 @@ export class Tab1Page implements OnInit {
     this.initDate();
     this.getHealths();
 
+    // 日付を変更すると、体重項目の値を更新する
     this.dateControl.valueChanges.subscribe(() => {
       this.initBodyWeight();
     });
