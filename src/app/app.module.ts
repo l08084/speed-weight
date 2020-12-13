@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { NgApexchartsModule } from 'ng-apexcharts/lib/ng-apexcharts.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent],
@@ -28,7 +28,7 @@ import { NgApexchartsModule } from 'ng-apexcharts/lib/ng-apexcharts.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    NgApexchartsModule,
+    ChartsModule,
   ],
   providers: [
     StatusBar,
