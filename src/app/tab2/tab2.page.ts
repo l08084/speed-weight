@@ -9,7 +9,7 @@ import { Color, Label } from 'ng2-charts';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-  @ViewChild('barChart') barChart;
+  @ViewChild('lineChart') lineChart;
 
   bars: any;
   colorArray: any;
@@ -20,15 +20,15 @@ export class Tab2Page {
   }
 
   createBarChart() {
-    this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'bar',
+    this.bars = new Chart(this.lineChart.nativeElement, {
+      type: 'line',
       data: {
         labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
         datasets: [{
-          label: 'Viewers in millions',
+          label: '体重 kg',
           data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
           backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-          borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
+          borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
           borderWidth: 1
         }]
       },
