@@ -23,10 +23,10 @@ export class Tab2Page {
     this.bars = new Chart(this.lineChart.nativeElement, {
       type: 'line',
       data: {
-        labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
+        labels: ['12/11', '12/12', '12/13', '12/14', '12/15', '12/16', '12/17'],
         datasets: [{
           label: '体重 kg',
-          data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
+          data: [74.3, 75.0, 74.6, 75.0, 74.3, 74.6, 76.0],
           backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
           borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
           borderWidth: 1
@@ -36,7 +36,7 @@ export class Tab2Page {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: false
             }
           }]
         }
