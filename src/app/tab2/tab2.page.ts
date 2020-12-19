@@ -29,7 +29,7 @@ export class Tab2Page {
           data: [74.3, 75.0, 74.6, 75.0, 74.3, 74.6, 75.2],
           lineTension: 0, // 曲線ではなく直線にする
           fill: false, // グラフの背景色を消す
-          borderColor: 'rgb(38, 194, 129)',
+          borderColor: 'rgb(56, 128, 255)',
           borderWidth: 1
         }]
       },
