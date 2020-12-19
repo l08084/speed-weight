@@ -27,9 +27,9 @@ export class Tab2Page {
         datasets: [{
           label: '体重 kg',
           data: [74.3, 75.0, 74.6, 75.0, 74.3, 74.6, 75.2],
-          lineTension: 0,
-          fill: false,
-          borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+          lineTension: 0, // 曲線ではなく直線にする
+          fill: false, // グラフの背景色を消す
+          borderColor: 'rgb(38, 194, 129)',
           borderWidth: 1
         }]
       },
