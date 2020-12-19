@@ -34,6 +34,8 @@ export class Tab2Page {
         }]
       },
       options: {
+        responsive: true, // レスポンシブ
+        maintainAspectRatio: false, // サイズ変更の際に、元のキャンバスのアスペクト比を維持しない
         scales: {
           yAxes: [{
             ticks: {
