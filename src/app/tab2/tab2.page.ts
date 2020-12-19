@@ -26,7 +26,8 @@ export class Tab2Page {
         labels: ['12/11', '12/12', '12/13', '12/14', '12/15', '12/16', '12/17'],
         datasets: [{
           label: '体重 kg',
-          data: [74.3, 75.0, 74.6, 75.0, 74.3, 74.6, 76.0],
+          data: [74.3, 75.0, 74.6, 75.0, 74.3, 74.6, 75.2],
+          lineTension: 0,
           fill: false,
           borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
           borderWidth: 1
