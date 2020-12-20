@@ -1,7 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import * as Chart from 'chart.js';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-tab2',
