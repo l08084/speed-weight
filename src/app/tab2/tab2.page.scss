@@ -1,7 +1,18 @@
 .tab-button {
+    color: #3880ff;
     display: flex;
     justify-content: space-around;
     margin: 15px 0;
+
+    .item {
+        border-right: solid 1px #242d3c;
+        text-align: center;
+        width: 100%;
+
+        &.no-border {
+            border-right: none;
+        }
+    }
 }
 .chart-wrapper {
     height: 70%;
