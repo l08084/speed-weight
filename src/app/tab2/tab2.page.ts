@@ -1,6 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import * as Chart from 'chart.js';
 
+const Period = {
+  Week: 'week',
+  Month: 'month',
+  ThreeMonth: 'threeMonth',
+  Year: 'year',
+  ThreeYear: 'threeYear'
+} as const;
+type Period = typeof Period[keyof typeof Period];
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -9,15 +18,15 @@ import * as Chart from 'chart.js';
 export class Tab2Page {
   @ViewChild('lineChart') lineChart;
 
-  bars: any;
-  colorArray: any;
+  public bars: any;
+  public colorArray: any;
   constructor() { }
 
-  ionViewDidEnter() {
+  public ionViewDidEnter() {
     this.createBarChart();
   }
 
-  createBarChart() {
+  public createBarChart() {
     this.bars = new Chart(this.lineChart.nativeElement, {
       type: 'line',
       data: {
@@ -43,5 +52,9 @@ export class Tab2Page {
         }
       }
     });
+  }
+
+  public clickPeriodTab(period: Period) {
+    console.log(period);
   }
 }
