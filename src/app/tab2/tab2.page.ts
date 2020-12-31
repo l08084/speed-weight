@@ -56,6 +56,12 @@ export class Tab2Page {
     });
   }
 
+  /**
+   * 期間タブをクリックする
+   *
+   * @param {Period} period
+   * @memberof Tab2Page
+   */
   public clickPeriodTab(period: Period) {
     console.log(period);
     this.selectedPeriodTab = period;
