@@ -13,11 +13,11 @@
     </ion-toolbar>
   </ion-header>
   <div class="tab-button">
-    <div (click)="clickPeriodTab('week')" class="item">1週間</div>
-    <div (click)="clickPeriodTab('month')" class="item">1ヶ月</div>
-    <div (click)="clickPeriodTab('threeMonth')" class="item">3ヶ月</div>
-    <div (click)="clickPeriodTab('year')" class="item">1年</div>
-    <div (click)="clickPeriodTab('threeYear')" class="item no-border">3年</div>
+    <div (click)="clickPeriodTab('week')" class="item" [ngClass]="{ 'selected': selectedPeriodTab === 'week' }">1週間</div>
+    <div (click)="clickPeriodTab('month')" class="item" [ngClass]="{ 'selected': selectedPeriodTab === 'month' }">1ヶ月</div>
+    <div (click)="clickPeriodTab('threeMonth')" class="item" [ngClass]="{ 'selected': selectedPeriodTab === 'threeMonth' }">3ヶ月</div>
+    <div (click)="clickPeriodTab('year')" class="item" [ngClass]="{ 'selected': selectedPeriodTab === 'year' }">1年</div>
+    <div (click)="clickPeriodTab('threeYear')" class="item no-border" [ngClass]="{ 'selected': selectedPeriodTab === 'threeYear' }">3年</div>
   </div>
   <div class="chart-wrapper">
     <canvas #lineChart></canvas>

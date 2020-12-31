@@ -12,7 +12,12 @@
         &.no-border {
             border-right: none;
         }
+
+        &.selected {
+            color: #000;
+        }
     }
+
 }
 .chart-wrapper {
     height: 70%;

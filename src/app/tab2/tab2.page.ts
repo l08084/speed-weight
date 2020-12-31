@@ -20,6 +20,8 @@ export class Tab2Page {
 
   public bars: any;
   public colorArray: any;
+  public selectedPeriodTab: Period = 'week';
+
   constructor() { }
 
   public ionViewDidEnter() {
@@ -56,5 +58,6 @@ export class Tab2Page {
 
   public clickPeriodTab(period: Period) {
     console.log(period);
+    this.selectedPeriodTab = period;
   }
 }
