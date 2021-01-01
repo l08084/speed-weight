@@ -117,7 +117,7 @@ export class Tab1Page implements OnInit {
     try {
       await this.myHealthCollection.doc(beforeHealth.id).update({
         weight: this.bodyWeightControl.value as number,
-        updatedDate: firestore.FieldValue.serverTimestamp()
+        updatedDate: firestore.FieldValue.serverTimestamp(),
       });
     } catch (err) {
       console.error(err);
