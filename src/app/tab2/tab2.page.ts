@@ -32,6 +32,7 @@ export class Tab2Page {
   public selectedPeriodTab: Period = 'week';
   private myHealthCollection: AngularFirestoreCollection<Health>;
   private myHealths: Health[] = [];
+  private dateLabelList: string[];
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -118,5 +119,10 @@ export class Tab2Page {
    * @memberof Tab2Page
    */
   private createDateLabelList() {
+    switch (this.selectedPeriodTab) {
+      case Period.Week:
+        console.log('week');
+        break;
+    }
   }
 }
