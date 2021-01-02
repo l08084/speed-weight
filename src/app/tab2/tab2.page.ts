@@ -3,6 +3,7 @@ import * as Chart from 'chart.js';
 import { AuthenticationService } from '../services/authentication.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { Health } from '../models/health';
+import { DateLabelService } from '../services/date-label.service';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -15,7 +16,7 @@ const Period = {
   Year: 'year',
   ThreeYear: 'threeYear',
 } as const;
-type Period = typeof Period[keyof typeof Period];
+export type Period = typeof Period[keyof typeof Period];
 
 @Component({
   selector: 'app-tab2',
@@ -37,7 +38,8 @@ export class Tab2Page {
   constructor(
     private authenticationService: AuthenticationService,
     private spinnerService: SpinnerService,
-    private afStore: AngularFirestore
+    private afStore: AngularFirestore,
+    private dateLabelService: DateLabelService
   ) {}
 
   public ionViewDidEnter() {
@@ -85,7 +87,6 @@ export class Tab2Page {
    * @memberof Tab2Page
    */
   public clickPeriodTab(period: Period) {
-    console.log(period);
     this.selectedPeriodTab = period;
     this.updateChart();
   }
@@ -119,10 +120,8 @@ export class Tab2Page {
    * @memberof Tab2Page
    */
   private createDateLabelList() {
-    switch (this.selectedPeriodTab) {
-      case Period.Week:
-        console.log('week');
-        break;
-    }
+    this.dateLabelList = this.dateLabelService.createDateLabelList(
+      this.selectedPeriodTab
+    );
   }
 }
