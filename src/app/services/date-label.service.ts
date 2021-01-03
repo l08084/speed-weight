@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Period } from '../tab2/tab2.page';
+import * as dayjs from 'dayjs';
 
 /**
  * グラフの日付文字列ラベルを作成する
@@ -38,7 +39,22 @@ export class DateLabelService {
     }
   }
 
+  /**
+   * 1週間分の日付ラベルを作成する
+   *
+   * @private
+   * @returns {string[]}
+   * @memberof DateLabelService
+   */
   private createWeekDateLabel(): string[] {
-    return [];
+    const weekDateLabel = [];
+    const now = dayjs();
+    weekDateLabel.push(now.format('MM/DD'));
+    let day = now;
+    for (let i = 0; i < 6; i++) {
+      day = day.subtract(1, 'day');
+      weekDateLabel.push(day.format('MM/DD'));
+    }
+    return weekDateLabel.reverse();
   }
 }

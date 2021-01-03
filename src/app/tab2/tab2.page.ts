@@ -52,7 +52,7 @@ export class Tab2Page {
     this.bars = new Chart(this.lineChart.nativeElement, {
       type: 'line',
       data: {
-        labels: ['12/11', '12/12', '12/13', '12/14', '12/15', '12/16', '12/17'],
+        labels: [...this.dateLabelList],
         datasets: [
           {
             label: '体重 kg',
