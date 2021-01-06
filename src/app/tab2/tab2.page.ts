@@ -59,6 +59,7 @@ export class Tab2Page {
             fill: false, // グラフの背景色を消す
             borderColor: 'rgb(56, 128, 255)',
             borderWidth: 1,
+            spanGaps: true, // データにnullがあったとしても、線を補間表示する
           },
         ],
       },
