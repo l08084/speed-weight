@@ -34,6 +34,7 @@ export class Tab2Page {
   private myHealthCollection: AngularFirestoreCollection<Health>;
   private myHealths: Health[] = [];
   private dateLabelList: string[];
+  private bodyWeightDateList: string[];
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -45,6 +46,7 @@ export class Tab2Page {
   public ionViewDidEnter() {
     this.getHealths();
     this.createDateLabelList();
+    this.retrieveBodyWeight();
     this.createBarChart();
   }
 
@@ -121,6 +123,18 @@ export class Tab2Page {
    */
   private createDateLabelList() {
     this.dateLabelList = this.dateLabelService.createDateLabelList(
+      this.selectedPeriodTab
+    );
+  }
+
+  /**
+   * グラフに表示する体重データを取得する
+   *
+   * @private
+   * @memberof Tab2Page
+   */
+  private retrieveBodyWeight() {
+    this.bodyWeightDateList = this.dateLabelService.createBodyWeightParam(
       this.selectedPeriodTab
     );
   }
