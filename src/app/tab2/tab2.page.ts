@@ -24,8 +24,6 @@ export type Period = typeof Period[keyof typeof Period];
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-  // TODO: 身体情報を取得する
-  // TODO: 当日を起点に日付文字列を適当数作成する
   @ViewChild('lineChart') lineChart;
 
   public bars: any;
@@ -35,6 +33,7 @@ export class Tab2Page {
   private myHealths: Health[] = [];
   private dateLabelList: string[];
   private bodyWeightDateList: string[];
+  private chartData: number[];
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -45,9 +44,6 @@ export class Tab2Page {
 
   public ionViewDidEnter() {
     this.getHealths();
-    this.createDateLabelList();
-    this.retrieveBodyWeight();
-    this.createBarChart();
   }
 
   public createBarChart() {
@@ -58,7 +54,7 @@ export class Tab2Page {
         datasets: [
           {
             label: '体重 kg',
-            data: [74.3, 75.0, 74.6, 75.0, 74.3, 74.6, 75.2],
+            data: [...this.chartData],
             lineTension: 0, // 曲線ではなく直線にする
             fill: false, // グラフの背景色を消す
             borderColor: 'rgb(56, 128, 255)',
@@ -111,6 +107,11 @@ export class Tab2Page {
     this.myHealthCollection.valueChanges().subscribe((myHealths) => {
       this.spinnerService.show();
       this.myHealths = myHealths;
+      if (this.myHealths.length > 0) {
+        this.createDateLabelList();
+        this.retrieveBodyWeight();
+        this.createBarChart();
+      }
       this.spinnerService.hide();
     });
   }
@@ -137,5 +138,10 @@ export class Tab2Page {
     this.bodyWeightDateList = this.dateLabelService.createBodyWeightParam(
       this.selectedPeriodTab
     );
+
+    this.chartData = this.bodyWeightDateList.map((date) => {
+      const health = this.myHealths.find((item) => item.date === date);
+      return health ? health.weight : undefined;
+    });
   }
 }
