@@ -17,7 +17,10 @@ const Period = {
   ThreeYear: 'threeYear',
 } as const;
 export type Period = typeof Period[keyof typeof Period];
-
+// TODO: 体重計グラフアプリの問題点
+// TODO: 問題点1: グラフの外側の体重データと線をつなげる必要がある
+// TODO: 問題点2: 例えば、１週間を指定した場合に、今週のデータではなく、体重が設定されている日付のデータを表示する必要がある
+// TODO: 問題点3: 1週間以外の期間の場合、どうするか
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
