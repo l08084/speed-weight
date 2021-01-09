@@ -19,8 +19,11 @@ const Period = {
 export type Period = typeof Period[keyof typeof Period];
 // TODO: 体重計グラフアプリの問題点
 // TODO: 問題点1: グラフの外側の体重データと線をつなげる必要がある
+// TODO: 問題点1の対応: 諦める
 // TODO: 問題点2: 例えば、１週間を指定した場合に、今週のデータではなく、体重が設定されている日付のデータを表示する必要がある
+// TODO: 問題点2の対応: 対応する
 // TODO: 問題点3: 1週間以外の期間の場合、どうするか
+// TODO: 問題点3の対応: なるべく、縦線をふやす。収まらない場合は平均を使用する
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
