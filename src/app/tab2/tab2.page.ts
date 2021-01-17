@@ -40,6 +40,7 @@ export class Tab2Page {
   private dateLabelList: string[];
   private bodyWeightDateList: string[];
   private chartData: number[];
+  private baseDateLabel: string;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -52,6 +53,11 @@ export class Tab2Page {
     this.getHealths();
   }
 
+  /**
+   * グラフを新規作成する。
+   *
+   * @memberof Tab2Page
+   */
   public createBarChart() {
     this.bars = new Chart(this.lineChart.nativeElement, {
       type: 'line',
@@ -115,12 +121,18 @@ export class Tab2Page {
       this.spinnerService.show();
       this.myHealths = myHealths;
       if (this.myHealths.length > 0) {
+        this.createBaseDateLabel();
         this.createDateLabelList();
+        this.createBodyWeightParam();
         this.retrieveBodyWeight();
         this.createBarChart();
       }
       this.spinnerService.hide();
     });
+  }
+
+  private createBaseDateLabel() {
+    this.baseDateLabel = this.dateLabelService.createBaseDateLabel(this.myHealths);
   }
 
   /**
@@ -131,6 +143,20 @@ export class Tab2Page {
    */
   private createDateLabelList() {
     this.dateLabelList = this.dateLabelService.createDateLabelList(
+      this.baseDateLabel,
+      this.selectedPeriodTab
+    );
+  }
+
+  /**
+   * 体重データを取得する引数となる日付文字列を作成する
+   *
+   * @private
+   * @memberof Tab2Page
+   */
+  private createBodyWeightParam() {
+    this.bodyWeightDateList = this.dateLabelService.createBodyWeightParam(
+      this.baseDateLabel,
       this.selectedPeriodTab
     );
   }
@@ -142,10 +168,7 @@ export class Tab2Page {
    * @memberof Tab2Page
    */
   private retrieveBodyWeight() {
-    this.bodyWeightDateList = this.dateLabelService.createBodyWeightParam(
-      this.selectedPeriodTab
-    );
-
+    // グラフで表示する用の体重データを取得
     this.chartData = this.bodyWeightDateList.map((date) => {
       const health = this.myHealths.find((item) => item.date === date);
       return health ? health.weight : undefined;

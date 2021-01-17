@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Period } from '../tab2/tab2.page';
 import * as dayjs from 'dayjs';
+import { Health } from '../models/health';
 
 /**
  * グラフの日付文字列ラベルを作成する
@@ -20,10 +21,13 @@ export class DateLabelService {
    * @param {Period} periodValue
    * @memberof DateLabelService
    */
-  public createDateLabelList(periodValue: Period): string[] {
+  public createDateLabelList(
+    baseDateLabel: string,
+    periodValue: Period
+  ): string[] {
     switch (periodValue) {
       case 'week':
-        return this.createWeekDateLabel();
+        return this.createWeekDateLabel(baseDateLabel);
       case 'month':
         console.log('month');
         break;
@@ -46,11 +50,11 @@ export class DateLabelService {
    * @returns {string[]}
    * @memberof DateLabelService
    */
-  private createWeekDateLabel(): string[] {
+  private createWeekDateLabel(baseDateLabel: string): string[] {
     const weekDateLabel = [];
-    const now = dayjs();
-    weekDateLabel.push(now.format('MM/DD'));
-    let day = now;
+    const baseDate = dayjs(baseDateLabel);
+    weekDateLabel.push(baseDate.format('MM/DD'));
+    let day = baseDate;
     for (let i = 0; i < 6; i++) {
       day = day.subtract(1, 'day');
       weekDateLabel.push(day.format('MM/DD'));
@@ -66,10 +70,13 @@ export class DateLabelService {
    * @returns {string[]}
    * @memberof DateLabelService
    */
-  public createBodyWeightParam(periodValue: Period): string[] {
+  public createBodyWeightParam(
+    baseDateLabel: string,
+    periodValue: Period
+  ): string[] {
     switch (periodValue) {
       case 'week':
-        return this.createWeekWeightBodyParam();
+        return this.createWeekWeightBodyParam(baseDateLabel);
       case 'month':
         console.log('month');
         break;
@@ -92,15 +99,21 @@ export class DateLabelService {
    * @returns {string[]}
    * @memberof DateLabelService
    */
-  private createWeekWeightBodyParam(): string[] {
+  private createWeekWeightBodyParam(baseDateLabel: string): string[] {
     const weekDateLabel = [];
-    const now = dayjs();
-    weekDateLabel.push(now.format('YYYY-MM-DD'));
-    let day = now;
+    const baseDate = dayjs(baseDateLabel);
+    weekDateLabel.push(baseDate.format('YYYY-MM-DD'));
+    let day = baseDate;
     for (let i = 0; i < 6; i++) {
       day = day.subtract(1, 'day');
       weekDateLabel.push(day.format('YYYY-MM-DD'));
     }
     return weekDateLabel.reverse();
+  }
+
+  public createBaseDateLabel(myHealths: Health[]): string {
+    return dayjs(
+      Math.max(...myHealths.map((healsh) => dayjs(healsh.date).valueOf()))
+    ).format('YYYY-MM-DD');
   }
 }
